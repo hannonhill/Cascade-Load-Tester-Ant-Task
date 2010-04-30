@@ -1,0 +1,42 @@
+<project name="Load Tester Ant Tasks" basedir="." default="build">
+	<property name="lib.dir" value="lib"/>
+	<property name="build.dir" value="build"/>
+	<property name="dist.dir" value="dist"/>
+	<property name="src.dir" value="src"/>
+	<property name="jar.name" value="LoadTesterAntTask.jar"/>
+	
+	<!-- ================================= 
+          target: Build              
+         ================================= -->
+    <target name="build" depends="clean" description="Builds Project">
+        <mkdir dir="${build.dir}"/>
+    	<javac srcdir="${src.dir}"
+         destdir="${build.dir}"
+         debug="on">
+    		<classpath>
+    			<fileset dir="${lib.dir}">
+    				    <include name="*.jar"/>
+    				</fileset>
+    		</classpath>
+    	</javac>
+    	<copy todir="${build.dir}">
+    		<fileset dir="${src.dir}">
+			    <include name="*.properties"/>
+			</fileset>
+
+    	</copy>
+    	<mkdir dir="${dist.dir}"/>
+    	<jar destfile="${dist.dir}/${jar.name}/">
+    		<zipfileset dir="${build.dir}" includes="**/*"/>
+    	</jar>
+    </target>
+	
+	<!-- ================================= 
+          target: clean              
+         ================================= -->
+    <target name="clean">
+        <delete quiet="true">
+			<fileset dir="${build.dir}"></fileset>
+		</delete>
+    </target>
+</project>

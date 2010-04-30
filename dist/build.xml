@@ -1,0 +1,21 @@
+<project name="demo" basedir="." default="demo1">
+	
+
+   <taskdef resource="LoadTesterAntTask.properties" classpath="LoadTesterAntTask.jar"/>
+
+   <target name="demo1">
+   	
+      <loadtest 
+   		testHost="http://localhost:8081/LoadTester" 
+   		host="localhost" 
+   		port="8080" 
+   		username="admin" 
+   		password="admin" 
+   		assetId="282d5d1bc0a8001e0065a6865a1cc8ef" 
+   		group="administration"
+   		numUsers="1"
+   	>
+      </loadtest>
+   </target>
+
+</project>
